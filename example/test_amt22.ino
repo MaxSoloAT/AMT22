@@ -9,7 +9,7 @@
 
 uint16_t pos = 0;
 AMT22 ENC0(ENC_0);
-AMT22 ENC1(ENC_1, SPI_MOSI, SPI_MOSI, SPI_MISO, SPI_SCLK);
+AMT22 ENC1(ENC_1, SPI_MOSI, SPI_MISO, SPI_SCLK);
 void setup() {
   Serial.begin(115200);
   SPI.setClockDivider(SPI_CLOCK_DIV32);
