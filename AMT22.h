@@ -17,9 +17,9 @@
 class AMT22 
 {
 	public:
-	AMT22(uint8_t CS, uint8_t MOSI = DEF_SPI_MOSI, uint8_t MISO = DEF_SPI_MISO, uint8_t SCLK = DEF_SPI_SCLK);
+	AMT22(uint8_t CS, uint8_t MOSI, uint8_t MISO, uint8_t SCLK);
 	~AMT22();
-
+  float angle;
 	uint16_t getPosition();
 	void resetAMT22();
 	void setZeroSPI();
