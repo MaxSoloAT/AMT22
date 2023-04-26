@@ -8,8 +8,8 @@
 #include "AMT22.h"
 
 uint16_t pos = 0;
-AMT22 ENC0(ENC_0);
-AMT22 ENC1(ENC_1, SPI_MOSI, SPI_MISO, SPI_SCLK);
+float pos_angle;
+AMT22 ENC0(ENC_0, SPI_MOSI, SPI_MISO, SPI_SCLK);
 void setup() {
   Serial.begin(115200);
   SPI.setClockDivider(SPI_CLOCK_DIV32);
@@ -25,4 +25,6 @@ void loop() {
     else{  
       Serial.println(pos);
     }
+  pos_angle = ENC0.angle;
+  Serial.println(pos_angle);
 }
