@@ -1,6 +1,6 @@
 #include "AMT22.h"
 
-AMT22::AMT22(uint8_t CS, uint8_t MOSI = DEF_SPI_MOSI, uint8_t MISO = DEF_SPI_MISO, uint8_t SCLK = DEF_SPI_SCLK){
+AMT22::AMT22(uint8_t CS, uint8_t MOSI, uint8_t MISO, uint8_t SCLK){
 	encoder = CS;
 	pinMode(encoder, OUTPUT);
 	pinMode(SCLK, OUTPUT);
@@ -47,7 +47,7 @@ uint16_t AMT22::getPosition(){
 
   //If the resolution is 12-bits, and wasn't 0xFFFF, then shift position, otherwise do nothing
   if ((resolution == RES12) && (currentPosition != 0xFFFF)) currentPosition = currentPosition >> 2;
-
+  if (currentPosition != 0xFFFF) angle = currentPosition * 360UL / 16384.0;
   return currentPosition;
 }
 
@@ -102,6 +102,7 @@ void AMT22::setZeroSPI(){ //only for once rotate enc
   delayMicroseconds(3); 
 
   spiWriteRead(AMT22_ZERO, true);
+  angle = 0;
   delay(250); //250 second delay to allow the encoder to reset
 }
 
