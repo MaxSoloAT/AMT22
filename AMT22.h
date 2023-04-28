@@ -14,6 +14,7 @@
 #define DEF_SPI_SCLK        13
 
 #include <SPI.h>
+#include <Arduino.h>
 class AMT22 
 {
 	public:
